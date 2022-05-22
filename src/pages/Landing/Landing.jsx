@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import { Aside } from "../../components/index";
 import { useDocumentTitle } from "../../hooks/custom/index";
 const girlTakingNotesPic = require("../../assets/images/Taking notes-bro.png");
@@ -23,12 +24,11 @@ function Landing() {
               Manage your daily tasks and workflow in a modern way and boost
               your efficiency without any efforts.
             </small>
-            <button className="btn btn-primary btn-width-100 pointer">
-              Sign up
-            </button>
-            <small className="styled-link pointer">
-              Have an account? Log in
-            </small>
+            <Link to="/auth">
+              <button className="btn btn-primary btn-width-extended pointer">
+                Log in
+              </button>
+            </Link>
           </div>
 
           <div className="image-hero">
