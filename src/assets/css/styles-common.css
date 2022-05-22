@@ -1,0 +1,178 @@
+/* FONT */
+
+@import url("https://fonts.googleapis.com/css2?family=Italianno&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700;900&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Nunito+Sans:wght@400;900&display=swap");
+
+/* **************************************************************************************************** */
+
+/* COLORS */
+
+:root {
+  --primary-color: #0d6efd;
+  --secondary-color: #6c757d;
+  --success-color: #198754;
+  --danger-color: #dc3545;
+  --warning-color: #ffc107;
+  --info-color: #0dcaf0;
+  --light-color: #f8f9fa;
+  --dark-color: #212529;
+  --muted-color: #6c757d;
+
+  --primary-hover: #0b5ed7;
+  --secondary-hover: #5c636a;
+  --success-hover: #157347;
+  --danger-hover: #bb2d3b;
+  --warning-hover: #ffca2c;
+  --info-hover: #31d2f2;
+  --light-hover: #f9fafb;
+  --dark-hover: #1c1f23;
+
+  --link-hover: #36096d;
+  --dark-theme: #363c49;
+
+  --slide-dot-active: #0d6efd;
+  --slide-dot-inactive: #c4c4c4;
+}
+
+/* **************************************************************************************************** */
+
+/* THEME */
+
+body {
+  font-family: "Nunito Sans", sans-serif;
+}
+
+.dark-theme {
+  background-color: var(--dark-theme);
+  color: var(--light-color);
+}
+
+/* **************************************************************************************************** */
+
+/* OTHER CLASS STYLES START */
+
+.hr-thin {
+  border: 0;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.3);
+  border-top: 1px solid rgba(0, 0, 0, 0.1);
+  height: 0;
+  width: 90%;
+}
+
+.styled-link,
+.styled-link-2 {
+  color: inherit;
+}
+
+.styled-link:hover,
+.styled-link-2 > i:hover {
+  background-color: #36096d;
+  background-image: linear-gradient(315deg, #36096d 0%, #37d5d6 80%);
+  -moz-background-clip: text;
+  -moz-text-fill-color: transparent;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.font-montserrat {
+  font-family: "Montserrat", sans-serif;
+  font-weight: 900;
+}
+
+/* OTHER CLASS STYLES END */
+
+/* **************************************************************************************************** */
+
+/* DIRECT TAG STYLES START */
+
+a {
+  text-decoration: none;
+  color: var(--primary-color);
+}
+
+i {
+  padding: 0.5rem;
+}
+
+iframe {
+  display: block;
+  margin: 0 auto;
+}
+
+/* DIRECT TAG STYLES END */
+
+/* **************************************************************************************************** */
+
+/* PROJECT SPECIFIC COMMON STYLES START */
+
+/* COMMON STYLES START */
+
+.color-white {
+  color: var(--light-color);
+}
+
+.color-blue {
+  color: var(--primary-color);
+}
+
+.pointer {
+  cursor: pointer;
+}
+
+/* COMMON STYLES END */
+
+/* PAGE STYLES START */
+
+.main-container {
+  display: grid;
+  grid-template-areas:
+    "aside main main main main main"
+    "aside main main main main main"
+    "aside main main main main main";
+  grid-template-columns: repeat(6, 1fr);
+  grid-template-rows: repeat(3, 1fr);
+}
+
+.main {
+  grid-area: main;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+
+/* LANDING PAGE */
+
+.landing-content {
+  display: flex;
+  justify-content: center;
+}
+
+.text-hero {
+  max-width: 35%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  gap: 1rem;
+  padding: 5rem;
+}
+
+.image-hero {
+  max-width: 40%;
+}
+
+/* ERROR PAGE */
+
+.errorImage {
+  background-image: url("../../assets/images/404_error.gif");
+  background-size: cover;
+  height: 65vh;
+}
+
+/* PAGE STYLES END */
+
+/* PROJECT SPECIFIC COMMON STYLES END */
+
+/* **************************************************************************************************** */
