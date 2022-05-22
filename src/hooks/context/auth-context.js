@@ -1,4 +1,5 @@
 import axios from "axios";
+import { useEffect } from "react";
 import { createContext, useContext, useState } from "react";
 
 const defaultObj = {};
@@ -7,6 +8,18 @@ const AuthContext = createContext(defaultObj);
 const AuthProvider = ({ children }) => {
   const [userDetails, setUserDetails] = useState(null);
   const [encodedToken, setEncodedToken] = useState(null);
+
+  // ****************************************************************************************************
+
+  useEffect(() => {
+    const localToken = localStorage.getItem("candel-notes-jwt-token");
+
+    if (localToken) {
+      verifyJwtTokenOnPageRefresh(localToken);
+    }
+  }, []);
+
+  // ****************************************************************************************************
 
   const authenticateLoginDetails = async (loginDetails) => {
     try {
@@ -58,6 +71,27 @@ const AuthProvider = ({ children }) => {
     setUserDetails(null);
     setEncodedToken(null);
     localStorage.removeItem("candel-notes-jwt-token");
+  };
+
+  const verifyJwtTokenOnPageRefresh = async (localToken) => {
+    try {
+      const params = {
+        method: "post",
+        url: "/api/auth/verifyJwtToken",
+        data: {
+          localToken,
+        },
+      };
+
+      const verifyJwtTokenResponse = await axios.request(params);
+
+      if (verifyJwtTokenResponse.status === 200) {
+        setUserDetails(verifyJwtTokenResponse.data.foundUser);
+        setEncodedToken(localToken);
+      }
+    } catch (error) {
+      console.log(error.response.data);
+    }
   };
 
   const valueObj = {
