@@ -120,6 +120,10 @@ iframe {
   cursor: pointer;
 }
 
+.btn-width-extended {
+  width: 25rem;
+}
+
 /* COMMON STYLES END */
 
 /* PAGE STYLES START */
@@ -169,6 +173,33 @@ iframe {
   background-image: url("../../assets/images/404_error.gif");
   background-size: cover;
   height: 65vh;
+}
+
+/* LOGIN AND SIGNUP PAGE */
+
+.login-signup-section {
+  width: 30rem;
+  text-align: center;
+  padding: 2rem;
+}
+
+.form-spacing {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+}
+
+.password-icon {
+  bottom: unset;
+  right: -5%;
+  top: 48%;
+  transform: translate(-50%, -50%);
+}
+
+@media only screen and (max-width: 300px) {
+  .login-signup-section {
+    width: 100%;
+  }
 }
 
 /* PAGE STYLES END */
