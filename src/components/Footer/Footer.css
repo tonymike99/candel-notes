@@ -1,0 +1,49 @@
+/* FOOTER STYLES START */
+
+.footer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  gap: 1rem;
+  padding: 2rem 0;
+  background-color: var(--dark-color);
+  color: var(--light-color);
+}
+
+.my-name {
+  font-family: "Italianno", cursive;
+  font-size: 4rem;
+}
+
+.footer-icons {
+  display: flex;
+  align-items: center;
+  gap: 1.5rem;
+}
+
+.footer-heart-icon {
+  color: red;
+}
+
+.footer-code-icon {
+  color: #15aabf;
+}
+
+.footer-github-icon {
+  color: var(--light-color);
+}
+
+.footer-twitter-icon {
+  color: #5aa4d6;
+}
+
+.footer-email-icon {
+  color: var(--light-color);
+}
+
+.footer-linkedin-icon {
+  color: var(--light-color);
+}
+
+/* FOOTER STYLES END */

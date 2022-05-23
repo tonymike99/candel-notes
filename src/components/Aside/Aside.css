@@ -1,0 +1,16 @@
+.aside {
+  grid-area: aside;
+  display: flex;
+  justify-content: unset;
+  align-items: unset;
+  flex-direction: column;
+  padding: 2rem;
+}
+
+a.active {
+  color: forestgreen;
+}
+
+.tabs {
+  gap: 2rem;
+}
