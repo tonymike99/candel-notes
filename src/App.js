@@ -2,7 +2,15 @@ import "./App.css";
 import { Routes, Route } from "react-router-dom";
 import { Footer, Header } from "./components/index";
 import { PrivateRoute, RestrictedRoute } from "./auth/index";
-import { Auth, Landing, PageNotFound, Home } from "./pages/index";
+import {
+  Auth,
+  Landing,
+  PageNotFound,
+  Home,
+  Labels,
+  Archives,
+  Trash,
+} from "./pages/index";
 
 function App() {
   return (
@@ -19,6 +27,9 @@ function App() {
 
         <Route element={<PrivateRoute />}>
           <Route path="/home" element={<Home />} />
+          <Route path="/labels" element={<Labels />} />
+          <Route path="/archives" element={<Archives />} />
+          <Route path="/trash" element={<Trash />} />
         </Route>
       </Routes>
 
