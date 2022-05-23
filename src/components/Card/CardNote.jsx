@@ -3,7 +3,7 @@ import { useLocation } from "react-router-dom";
 import { useNotes, useArchives, useTrash } from "../../hooks/context/index";
 
 function CardNote({ data }) {
-  const { _id, title, description, color, tags, priority } = data;
+  const { _id, title, description, color, tags, priority, date } = data;
 
   const [editedNoteDetails, setEditedNoteDetails] = useState({
     _id,
@@ -12,6 +12,7 @@ function CardNote({ data }) {
     color,
     tags,
     priority,
+    date,
   });
 
   const { notes, editNote, deleteNoteFromNotes } = useNotes();
@@ -108,6 +109,7 @@ function CardNote({ data }) {
 
   return (
     <div className="card" style={{ backgroundColor: editedNoteDetails.color }}>
+      <small className="text-center">Created on {editedNoteDetails.date}</small>
       <div className="card-header">
         <input
           className={isNoteInArchivesOrTrash(_id) ? "disabled" : ""}
@@ -278,7 +280,7 @@ function CardNote({ data }) {
                 className={labelsDisplay ? "absolute" : "absolute display-none"}
               >
                 {editedNoteDetails.tags.map((tag, index) => (
-                  <div key={tag.id}>
+                  <div key={tag._id}>
                     <input
                       type="checkbox"
                       id={tag.id}
@@ -304,17 +306,19 @@ function CardNote({ data }) {
         </div>
       )}
       <div>
-        <button
-          className={
-            isNoteInArchivesOrTrash(_id)
-              ? "btn btn-secondary btn-width-100 disabled"
-              : "btn btn-secondary btn-width-100"
-          }
-          onClick={handleSaveNoteButtonOnClick}
-        >
-          <i className="fa-solid fa-floppy-disk"></i>
-          Save note
-        </button>
+        {location.pathname !== "/labels" && (
+          <button
+            className={
+              isNoteInArchivesOrTrash(_id)
+                ? "btn btn-secondary btn-width-100 disabled"
+                : "btn btn-secondary btn-width-100"
+            }
+            onClick={handleSaveNoteButtonOnClick}
+          >
+            <i className="fa-solid fa-floppy-disk"></i>
+            Save note
+          </button>
+        )}
       </div>
     </div>
   );
