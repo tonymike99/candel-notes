@@ -3,9 +3,7 @@ import { useNotes, useTags } from "../../hooks/context/index";
 
 function CardMain() {
   const { createNote } = useNotes();
-
   const { tagList } = useTags();
-
   const [noteDetails, setNoteDetails] = useState({
     title: "",
     description: "",
@@ -17,7 +15,7 @@ function CardMain() {
   // ****************************************************************************************************
 
   const handleAddNoteButtonOnClick = () => {
-    createNote(noteDetails);
+    createNote({ ...noteDetails, date: new Date().toLocaleString() });
     setLabelsDisplay(false);
     setNoteDetails({
       title: "",
@@ -26,7 +24,6 @@ function CardMain() {
       tags: [...tagList],
       priority: "",
     });
-    console.log(tagList);
   };
 
   const [labelsDisplay, setLabelsDisplay] = useState(false);
@@ -115,10 +112,10 @@ function CardMain() {
               className={labelsDisplay ? "absolute" : "absolute display-none"}
             >
               {noteDetails.tags.map((tag, index) => (
-                <div key={tag.id}>
+                <div key={tag._id}>
                   <input
                     type="checkbox"
-                    id={tag.id}
+                    id={tag._id}
                     name={tag.name}
                     defaultChecked={tag.checked}
                     onChange={(e) =>
@@ -132,7 +129,7 @@ function CardMain() {
                       })
                     }
                   />
-                  <label htmlFor={tag.id}>{tag.name}</label>
+                  <label htmlFor={tag._id}>{tag.name}</label>
                 </div>
               ))}
             </fieldset>
