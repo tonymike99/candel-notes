@@ -1,6 +1,6 @@
 import "./Header.css";
 import { Link } from "react-router-dom";
-import { useTheme } from "../../hooks/context/index";
+import { useTheme, useAuth } from "../../hooks/context/index";
 
 function Header() {
   const { theme, setTheme } = useTheme();
@@ -13,14 +13,19 @@ function Header() {
 
   // ****************************************************************************************************
 
-  const encodedToken = null;
+  const { encodedToken, logoutUserDetails } = useAuth();
+
+  // To handle logout button onClick
+  const handlerLogout = () => {
+    logoutUserDetails();
+  };
 
   // ****************************************************************************************************
 
   return (
     <header className="header">
       <div className="header-item">
-        <Link to="/" className="brand-name">
+        <Link to={encodedToken ? "/home" : "/"} className="brand-name">
           Candel Notes
         </Link>
       </div>
@@ -29,7 +34,8 @@ function Header() {
         <ul className="list list-spaced list-navbar">
           <li>
             {encodedToken ? (
-              <Link to="/" className="styled-link">
+              <Link to="/" className="styled-link" onClick={handlerLogout}>
+                {" "}
                 Logout
               </Link>
             ) : (
