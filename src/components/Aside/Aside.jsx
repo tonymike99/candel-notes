@@ -6,7 +6,7 @@ function Aside() {
   const linkDetails = [
     { to: "/home", name: "HOME", icon: "fa-home" },
     { to: "/labels", name: "LABELS", icon: "fa-tag" },
-    { to: "/archive", name: "ARCHIVE", icon: "fa-box-archive" },
+    { to: "/archives", name: "ARCHIVES", icon: "fa-box-archive" },
     { to: "/trash", name: "TRASH", icon: "fa-trash" },
   ];
 
