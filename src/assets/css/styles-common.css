@@ -258,6 +258,8 @@ textarea {
 
 .notes {
   display: flex;
+  justify-content: center;
+  align-items: center;
   gap: 3.5rem;
   flex-wrap: wrap;
 }
@@ -288,6 +290,27 @@ input[type="color"] {
 .tags-list {
   display: flex;
   gap: 1rem;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+.filters {
+  display: flex;
+  gap: 5rem;
+  flex-wrap: wrap;
+}
+
+.filters > * {
+  display: flex;
+  gap: 1rem;
+  flex-direction: column;
+  flex-wrap: wrap;
+}
+
+.add-tag {
+  top: 5px;
+  right: 1rem;
 }
 
 /* PAGE STYLES END */
