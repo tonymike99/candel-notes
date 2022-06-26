@@ -4,6 +4,14 @@ import { useTheme, useAuth } from "../../hooks/context/index";
 
 function Header() {
   const { theme, setTheme } = useTheme();
+  const { encodedToken, logoutUserDetails } = useAuth();
+
+  /* **************************************************************************************************** */
+
+  // To handle logout button onClick
+  const handlerLogout = () => {
+    logoutUserDetails();
+  };
 
   // To handle theme button onClick
   const handlerTheme = () => {
@@ -11,36 +19,24 @@ function Header() {
     setTheme(theme === "dark-theme" ? "light-theme" : "dark-theme");
   };
 
-  // ****************************************************************************************************
-
-  const { encodedToken, logoutUserDetails } = useAuth();
-
-  // To handle logout button onClick
-  const handlerLogout = () => {
-    logoutUserDetails();
-  };
-
-  // ****************************************************************************************************
+  /* **************************************************************************************************** */
 
   return (
     <header className="header">
-      <div className="header-item">
-        <Link to={encodedToken ? "/home" : "/"} className="brand-name">
-          Candel Notes
-        </Link>
-      </div>
+      <Link to="/" className="brand-name">
+        VideoBud
+      </Link>
 
-      <nav className="header-item">
-        <ul className="list list-spaced list-navbar">
+      <nav>
+        <ul className="list list-horizontal">
           <li>
             {encodedToken ? (
               <Link to="/" className="styled-link" onClick={handlerLogout}>
-                {" "}
-                Logout
+                Logout <i className="fa-solid fa-right-from-bracket fa-lg"></i>
               </Link>
             ) : (
               <Link to="/auth" className="styled-link">
-                Login
+                Login <i className="fas fa-user fa-lg" />
               </Link>
             )}
           </li>
@@ -52,7 +48,7 @@ function Header() {
               target="_blank"
               rel="noreferrer"
             >
-              <i className="fa-brands fa-github fa-lg"></i>
+              <i className="fab fa-github fa-lg" />
             </a>
           </li>
           <li>
@@ -61,8 +57,8 @@ function Header() {
                 id="theme-icon"
                 className={
                   theme === "dark-theme"
-                    ? "fa-solid fa-sun fa-lg"
-                    : "fa-solid fa-moon fa-lg"
+                    ? "fas fa-sun fa-lg"
+                    : "fas fa-moon fa-lg"
                 }
               />
             </Link>
