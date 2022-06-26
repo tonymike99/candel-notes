@@ -42,8 +42,10 @@ function Labels() {
   };
 
   const handleAddNewTagOnClick = () => {
-    setTagList([...tagList, { _id: uuid(), name: newTagName }]);
-    setNewTagName("");
+    if (newTagName.length > 0) {
+      setTagList([...tagList, { _id: uuid(), name: newTagName }]);
+      setNewTagName("");
+    }
   };
 
   // ****************************************************************************************************
@@ -53,16 +55,14 @@ function Labels() {
       <Aside />
 
       <main className="main">
-        <h1 className="margin-2">TAG FILTERS</h1>
-
-        <section className="tags-list">
+        <section className="tags-container">
           {[{ _id: 1, name: "All" }, ...tagList].map((tag) => (
             <button
               key={tag._id}
               className={
                 selectedTagName === tag.name
-                  ? "btn btn-dark"
-                  : "btn btn-dark-outline"
+                  ? "btn btn-dark-theme"
+                  : "btn btn-light-theme btn-light-theme-outline"
               }
               onClick={() => handleTagButtonOnClick(tag.name)}
             >
@@ -71,13 +71,13 @@ function Labels() {
           ))}
           <div className="relative">
             <input
-              className="margin-0"
               type="text"
+              placeholder="Enter tag name"
               value={newTagName}
               onChange={(e) => setNewTagName(e.target.value)}
             />
             <span
-              className="absolute pointer add-tag"
+              className="absolute badge-center-right color-black pointer"
               onClick={handleAddNewTagOnClick}
             >
               <i className="fa-solid fa-plus"></i>
@@ -85,13 +85,13 @@ function Labels() {
           </div>
         </section>
 
-        <section className="notes">
+        <section className="notes-container">
           {selectedTagNotes.length ? (
             selectedTagNotes.map((note) => (
               <CardNote key={note._id} data={note} />
             ))
           ) : (
-            <h1>Notes empty! 😒</h1>
+            <h1>Notes empty!</h1>
           )}
         </section>
       </main>

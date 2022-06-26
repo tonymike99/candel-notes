@@ -22,7 +22,7 @@ function Trash() {
       <Aside />
 
       <main className="main">
-        <section className="notes">
+        <section className="notes-container">
           {trash.length ? (
             trash.map((note) => <CardNote key={note._id} data={note} />)
           ) : (

@@ -22,7 +22,7 @@ function Archives() {
       <Aside />
 
       <main className="main">
-        <section className="notes">
+        <section className="notes-container">
           {archives.length ? (
             archives.map((note) => <CardNote key={note._id} data={note} />)
           ) : (

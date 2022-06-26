@@ -115,7 +115,7 @@ function Notes() {
           </div>
         </section>
 
-        <section className="notes">
+        <section className="notes-container">
           <CardMain />
           {notes.map((note) => (
             <CardNote key={note._id} data={note} />
