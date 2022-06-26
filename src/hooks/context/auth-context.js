@@ -40,7 +40,7 @@ const AuthProvider = ({ children }) => {
         );
       }
     } catch (error) {
-      console.log(error.response.data);
+      console.error(error);
     }
   };
 
@@ -63,7 +63,7 @@ const AuthProvider = ({ children }) => {
         );
       }
     } catch (error) {
-      console.log(error.response.data);
+      console.error(error);
     }
   };
 
@@ -90,7 +90,7 @@ const AuthProvider = ({ children }) => {
         setEncodedToken(localToken);
       }
     } catch (error) {
-      console.log(error.response.data);
+      console.error(error);
     }
   };
 
