@@ -4,9 +4,9 @@ import { Footer, Header } from "./components/index";
 import { PrivateRoute, RestrictedRoute } from "./auth/index";
 import {
   Auth,
-  Landing,
-  PageNotFound,
   Home,
+  PageNotFound,
+  Notes,
   Labels,
   Archives,
   Trash,
@@ -18,7 +18,7 @@ function App() {
       <Header />
 
       <Routes>
-        <Route path="/" element={<Landing />} />
+        <Route path="/" element={<Home />} />
         <Route path="/*" element={<PageNotFound />} />
 
         <Route element={<RestrictedRoute />}>
@@ -26,7 +26,7 @@ function App() {
         </Route>
 
         <Route element={<PrivateRoute />}>
-          <Route path="/home" element={<Home />} />
+          <Route path="/notes" element={<Notes />} />
           <Route path="/labels" element={<Labels />} />
           <Route path="/archives" element={<Archives />} />
           <Route path="/trash" element={<Trash />} />
