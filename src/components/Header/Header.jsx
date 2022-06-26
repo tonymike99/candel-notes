@@ -24,7 +24,7 @@ function Header() {
   return (
     <header className="header">
       <Link to="/" className="brand-name">
-        VideoBud
+        Candel Notes
       </Link>
 
       <nav>

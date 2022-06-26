@@ -7,7 +7,7 @@ function RestrictedRoute() {
   const location = useLocation();
 
   return userDetails && encodedToken ? (
-    <Navigate to="/" state={{ from: location }} replace />
+    <Navigate to="/notes" state={{ from: location }} replace />
   ) : (
     <Outlet />
   );
