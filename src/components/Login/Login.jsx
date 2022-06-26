@@ -31,8 +31,8 @@ function Login({ setComponent }) {
 
   const handleGuestLoginOnClick = () => {
     setLoginDetails({
-      email: "adarshbalika@gmail.com",
-      password: "adarshBalika123",
+      email: "guest_user@gmail.com",
+      password: "12345",
     });
   };
 
@@ -44,18 +44,22 @@ function Login({ setComponent }) {
   // ****************************************************************************************************
 
   return (
-    <section className="login-signup-section">
-      <h2 className="font-montserrat margin-bottom-2">LOGIN</h2>
-      <form className="form-spacing" action="#">
-        <input
-          type="email"
-          id="emailInput"
-          placeholder="Email Address"
-          required
-          value={loginDetails.email}
-          onChange={(e) => handleEmailOnChange(e)}
-        />
-        <div className="relative">
+    <section className="auth">
+      <h3 className="h3">LOGIN</h3>
+
+      <form className="form" action="#">
+        <div className="form-control">
+          <input
+            type="email"
+            id="emailInput"
+            placeholder="Email Address"
+            required
+            value={loginDetails.email}
+            onChange={(e) => handleEmailOnChange(e)}
+          />
+        </div>
+
+        <div className="form-control relative">
           <input
             type={passwordType}
             id="passwordInput"
@@ -65,7 +69,7 @@ function Login({ setComponent }) {
             onChange={(e) => handlePasswordOnChange(e)}
           />
           <span
-            className="badge badge-lg password-icon"
+            className="absolute badge-center-right color-black"
             onClick={handlePasswordType}
           >
             {passwordType === "password" ? (
@@ -75,18 +79,24 @@ function Login({ setComponent }) {
             )}
           </span>
         </div>
-        <button
-          className="btn btn-primary btn-width-100"
-          onClick={(e) => handleLoginOnClick(e)}
-        >
-          Login
-        </button>
+
+        <div className="form-control">
+          <button
+            className="btn btn-primary btn-width-100 pointer"
+            type="submit"
+            onClick={(e) => handleLoginOnClick(e)}
+          >
+            Login
+          </button>
+        </div>
+
         <small
           className="styled-link pointer"
           onClick={handleGuestLoginOnClick}
         >
           Guest Login
         </small>
+
         <small
           className="styled-link pointer"
           onClick={() => setComponent("Signup")}

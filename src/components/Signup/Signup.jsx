@@ -56,34 +56,44 @@ function Signup({ setComponent }) {
   // ****************************************************************************************************
 
   return (
-    <section className="login-signup-section">
-      <h2 className="font-montserrat margin-bottom-2">SIGN UP</h2>
-      <form className="form-spacing" action="#">
-        <input
-          type="text"
-          id="firstNameInput"
-          placeholder="First Name"
-          required
-          value={signupDetails.firstName}
-          onChange={(e) => handleFirstNameOnChange(e)}
-        />
-        <input
-          type="text"
-          id="lastNameInput"
-          placeholder="Last Name"
-          required
-          value={signupDetails.lastName}
-          onChange={(e) => handleLastNameOnChange(e)}
-        />
-        <input
-          type="email"
-          id="emailInput"
-          placeholder="Email Address"
-          required
-          value={signupDetails.email}
-          onChange={(e) => handleEmailOnChange(e)}
-        />
-        <div className="relative">
+    <section className="auth">
+      <h3 className="h3">SIGN UP</h3>
+
+      <form className="form" action="#">
+        <div className="form-control">
+          <input
+            type="text"
+            id="firstNameInput"
+            placeholder="First Name"
+            required
+            value={signupDetails.firstName}
+            onChange={(e) => handleFirstNameOnChange(e)}
+          />
+        </div>
+
+        <div className="form-control">
+          <input
+            type="text"
+            id="lastNameInput"
+            placeholder="Last Name"
+            required
+            value={signupDetails.lastName}
+            onChange={(e) => handleLastNameOnChange(e)}
+          />
+        </div>
+
+        <div className="form-control">
+          <input
+            type="email"
+            id="emailInput"
+            placeholder="Email Address"
+            required
+            value={signupDetails.email}
+            onChange={(e) => handleEmailOnChange(e)}
+          />
+        </div>
+
+        <div className="form-control relative">
           <input
             type={passwordType}
             id="passwordInput"
@@ -93,7 +103,7 @@ function Signup({ setComponent }) {
             onChange={(e) => handlePasswordOnChange(e)}
           />
           <span
-            className="badge badge-lg password-icon"
+            className="absolute badge-center-right color-black"
             onClick={handlePasswordType}
           >
             {passwordType === "password" ? (
@@ -104,18 +114,23 @@ function Signup({ setComponent }) {
           </span>
         </div>
 
-        <button
-          className="btn btn-primary btn-width-100"
-          onClick={(e) => handleSignupOnClick(e)}
-        >
-          Sign up
-        </button>
+        <div className="form-control">
+          <button
+            className="btn btn-primary btn-width-100 pointer"
+            type="submit"
+            onClick={(e) => handleSignupOnClick(e)}
+          >
+            Sign up
+          </button>
+        </div>
+
         <small
           className="styled-link pointer"
           onClick={handleGuestSignupOnClick}
         >
           Guest Signup
         </small>
+
         <small
           className="styled-link pointer"
           onClick={() => setComponent("Login")}
