@@ -69,7 +69,7 @@ function Login({ setComponent }) {
             onChange={(e) => handlePasswordOnChange(e)}
           />
           <span
-            className="absolute badge-center-right color-black"
+            className="absolute badge-inside-center-right color-black"
             onClick={handlePasswordType}
           >
             {passwordType === "password" ? (

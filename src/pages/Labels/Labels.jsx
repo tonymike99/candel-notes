@@ -77,7 +77,7 @@ function Labels() {
               onChange={(e) => setNewTagName(e.target.value)}
             />
             <span
-              className="absolute badge-center-right color-black pointer"
+              className="absolute badge-inside-center-right color-black pointer"
               onClick={handleAddNewTagOnClick}
             >
               <i className="fa-solid fa-plus"></i>
