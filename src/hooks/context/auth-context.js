@@ -12,7 +12,7 @@ const AuthProvider = ({ children }) => {
   // ****************************************************************************************************
 
   useEffect(() => {
-    const localToken = localStorage.getItem("candel-notes-jwt-token");
+    const localToken = localStorage.getItem("mikey-notes-jwt-token");
 
     if (localToken) {
       verifyJwtTokenOnPageRefresh(localToken);
@@ -35,12 +35,12 @@ const AuthProvider = ({ children }) => {
         setUserDetails(loginResponse.data.foundUser);
         setEncodedToken(loginResponse.data.encodedToken);
         localStorage.setItem(
-          "candel-notes-jwt-token",
+          "mikey-notes-jwt-token",
           loginResponse.data.encodedToken
         );
       }
     } catch (error) {
-      console.log(error.response.data);
+      console.error(error);
     }
   };
 
@@ -58,19 +58,19 @@ const AuthProvider = ({ children }) => {
         setUserDetails(signupResponse.data.createdUser);
         setEncodedToken(signupResponse.data.encodedToken);
         localStorage.setItem(
-          "candel-notes-jwt-token",
+          "mikey-notes-jwt-token",
           signupResponse.data.encodedToken
         );
       }
     } catch (error) {
-      console.log(error.response.data);
+      console.error(error);
     }
   };
 
   const logoutUserDetails = () => {
     setUserDetails(null);
     setEncodedToken(null);
-    localStorage.removeItem("candel-notes-jwt-token");
+    localStorage.removeItem("mikey-notes-jwt-token");
   };
 
   const verifyJwtTokenOnPageRefresh = async (localToken) => {
@@ -90,7 +90,7 @@ const AuthProvider = ({ children }) => {
         setEncodedToken(localToken);
       }
     } catch (error) {
-      console.log(error.response.data);
+      console.error(error);
     }
   };
 

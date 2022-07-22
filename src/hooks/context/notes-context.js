@@ -35,7 +35,7 @@ const NotesProvider = ({ children }) => {
         setNotes(getNotesResponse.data.notes);
       }
     } catch (error) {
-      console.log(error);
+      console.error(error);
     }
   };
 
@@ -56,7 +56,7 @@ const NotesProvider = ({ children }) => {
         setNotes(createNoteResponse.data.notes);
       }
     } catch (error) {
-      console.log(error);
+      console.error(error);
     }
   };
 
@@ -77,7 +77,7 @@ const NotesProvider = ({ children }) => {
         setNotes(editNoteResponse.data.notes);
       }
     } catch (error) {
-      console.log(error);
+      console.error(error);
     }
   };
 
@@ -97,7 +97,7 @@ const NotesProvider = ({ children }) => {
         setNotes(deleteNoteResponse.data.notes);
       }
     } catch (error) {
-      console.log(error);
+      console.error(error);
     }
   };
 

@@ -36,7 +36,7 @@ const ArchivesProvider = ({ children }) => {
         setArchives(getArchivesResponse.data.archives);
       }
     } catch (error) {
-      console.log(error);
+      console.error(error);
     }
   };
 
@@ -58,7 +58,7 @@ const ArchivesProvider = ({ children }) => {
         setArchives(addNoteFromNotesToArchivesResponse.data.archives);
       }
     } catch (error) {
-      console.log(error);
+      console.error(error);
     }
   };
 
@@ -82,7 +82,7 @@ const ArchivesProvider = ({ children }) => {
         setNotes(restoreNoteFromArchivesToNotesResponse.data.notes);
       }
     } catch (error) {
-      console.log(error);
+      console.error(error);
     }
   };
 
@@ -102,7 +102,7 @@ const ArchivesProvider = ({ children }) => {
         setArchives(deleteNoteFromArchivesResponse.data.archives);
       }
     } catch (error) {
-      console.log(error);
+      console.error(error);
     }
   };
 

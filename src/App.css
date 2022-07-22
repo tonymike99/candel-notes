@@ -1,9 +1,4 @@
 /* STYLESHEETS IMPORT */
-@import url("./assets/css/styles-reset.css");
 @import url("./assets/css/styles-common.css");
 
-/* COMPONENT LIBRARY */
-@import url("https://candel-css.netlify.app/assets/css/components.css");
-
-/* FONT-AWESOME */
-@import url("https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css");
+/* **************************************************************************************************** */

@@ -34,31 +34,31 @@ function CardMain() {
 
   return (
     <div className="card" style={{ backgroundColor: noteDetails.color }}>
-      <div className="card-header">
-        <input
-          type="text"
-          placeholder="Title of the note"
-          required
-          value={noteDetails.title}
-          onChange={(e) =>
-            setNoteDetails({ ...noteDetails, title: e.target.value })
-          }
-        />
-      </div>
-      <div className="card-body">
-        <textarea
-          name="note-description"
-          id="note-description"
-          cols="10"
-          rows="5"
-          placeholder="Description of the note"
-          required
-          value={noteDetails.description}
-          onChange={(e) =>
-            setNoteDetails({ ...noteDetails, description: e.target.value })
-          }
-        ></textarea>
-      </div>
+      <input
+        className="new_input"
+        type="text"
+        placeholder="Title of the note"
+        required
+        value={noteDetails.title}
+        onChange={(e) =>
+          setNoteDetails({ ...noteDetails, title: e.target.value })
+        }
+      />
+
+      <textarea
+        className="new_textarea"
+        name="note-description"
+        id="note-description"
+        cols="10"
+        rows="5"
+        placeholder="Description of the note"
+        required
+        value={noteDetails.description}
+        onChange={(e) =>
+          setNoteDetails({ ...noteDetails, description: e.target.value })
+        }
+      ></textarea>
+
       <div className="card-footer">
         <div>
           <label htmlFor="pick-color">
@@ -99,57 +99,59 @@ function CardMain() {
           </select>
         </div>
 
-        <div>
+        <div className="relative">
           <label htmlFor="tags">
             Tags: <i className="fa-solid fa-tag"></i>
             <span className="pointer" onClick={handleLabelsDisplay}>
-              <i className="fa-solid fa-caret-down"></i>
+              {labelsDisplay ? (
+                <i className="fa-solid fa-caret-down"></i>
+              ) : (
+                <i className="fa-solid fa-caret-right"></i>
+              )}
             </span>
           </label>
 
-          <div className="relative">
-            <fieldset
-              className={labelsDisplay ? "absolute" : "absolute display-none"}
-            >
-              {noteDetails.tags.map((tag, index) => (
-                <div key={tag._id}>
-                  <input
-                    type="checkbox"
-                    id={tag._id}
-                    name={tag.name}
-                    defaultChecked={tag.checked}
-                    onChange={(e) =>
-                      setNoteDetails({
-                        ...noteDetails,
-                        tags: [
-                          ...noteDetails.tags.slice(0, index),
-                          { ...tag, checked: e.target.checked },
-                          ...noteDetails.tags.slice(index + 1),
-                        ],
-                      })
-                    }
-                  />
-                  <label htmlFor={tag._id}>{tag.name}</label>
-                </div>
-              ))}
-            </fieldset>
-          </div>
+          <fieldset
+            style={{ backgroundColor: noteDetails.color }}
+            className={labelsDisplay ? "absolute" : "display-none"}
+          >
+            {noteDetails.tags.map((tag, index) => (
+              <div key={tag._id}>
+                <input
+                  type="checkbox"
+                  id={tag._id}
+                  name={tag.name}
+                  defaultChecked={tag.checked}
+                  onChange={(e) =>
+                    setNoteDetails({
+                      ...noteDetails,
+                      tags: [
+                        ...noteDetails.tags.slice(0, index),
+                        { ...tag, checked: e.target.checked },
+                        ...noteDetails.tags.slice(index + 1),
+                      ],
+                    })
+                  }
+                />
+                <label htmlFor={tag._id}>{tag.name}</label>
+              </div>
+            ))}
+          </fieldset>
         </div>
       </div>
-      <div>
-        <button
-          className={
-            !noteDetails.title || !noteDetails.description
-              ? "btn btn-primary btn-width-100 pointer disabled"
-              : "btn btn-primary btn-width-100 pointer"
-          }
-          onClick={handleAddNoteButtonOnClick}
-          disabled={!noteDetails.title || !noteDetails.description}
-        >
-          <i className="fa-solid fa-plus"></i>
-          Add note
-        </button>
-      </div>
+
+      <button
+        className={
+          !noteDetails.title || !noteDetails.description
+            ? "btn btn-primary btn-width-100 pointer disabled"
+            : "btn btn-primary btn-width-100 pointer"
+        }
+        onClick={handleAddNoteButtonOnClick}
+        disabled={!noteDetails.title || !noteDetails.description}
+      >
+        <i className="fa-solid fa-plus"></i>
+        Add note
+      </button>
     </div>
   );
 }

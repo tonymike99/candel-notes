@@ -1,14 +1,19 @@
-/* FOOTER STYLES START */
+/* FONT STYLES */
+@import url("https://fonts.googleapis.com/css2?family=Italianno&display=swap");
+
+/* **************************************************************************************************** */
 
 .footer {
   display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
   justify-content: center;
   align-items: center;
-  flex-direction: column;
-  gap: 1rem;
-  padding: 2rem 0;
+  gap: 1.5rem;
+  padding: 3rem 1.5rem;
   background-color: var(--dark-color);
   color: var(--light-color);
+  margin-top: 2.5rem;
 }
 
 .my-name {
@@ -18,32 +23,30 @@
 
 .footer-icons {
   display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
   align-items: center;
   gap: 1.5rem;
 }
 
-.footer-heart-icon {
+.color-heart {
   color: red;
 }
 
-.footer-code-icon {
+.color-code {
   color: #15aabf;
 }
 
-.footer-github-icon {
-  color: var(--light-color);
+.color-github,
+.color-twitter,
+.color-facebook,
+.color-email,
+.color-linkedin,
+.color-instagram,
+.color-stackoverflow,
+.color-hashnode,
+.color-medium {
+  color: white;
 }
 
-.footer-twitter-icon {
-  color: #5aa4d6;
-}
-
-.footer-email-icon {
-  color: var(--light-color);
-}
-
-.footer-linkedin-icon {
-  color: var(--light-color);
-}
-
-/* FOOTER STYLES END */
+/* **************************************************************************************************** */

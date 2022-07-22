@@ -1,7 +1,8 @@
-import { useEffect } from "react";
-import { Aside, CardNote, CardMain } from "../../components/index";
+import { Link } from "react-router-dom";
+import { Aside } from "../../components/index";
 import { useDocumentTitle } from "../../hooks/custom/index";
-import { useNotes } from "../../hooks/context/index";
+import { useAuth } from "../../hooks/context/index";
+const takingNotesImage = require("../../assets/images/taking_notes.svg");
 
 function Home() {
   // SET DOCUMENT TITLE
@@ -9,52 +10,7 @@ function Home() {
 
   // ****************************************************************************************************
 
-  const { notes, getNotes, setNotes } = useNotes();
-  let priorityLevels = { "": 0, Low: 1, Medium: 2, High: 3 };
-
-  // ****************************************************************************************************
-
-  useEffect(() => {
-    getNotes();
-  }, []);
-
-  // ****************************************************************************************************
-
-  const handlerSortByOldestToNewestDate = (e) => {
-    if (e.target.checked)
-      setNotes([
-        ...notes.sort(function (a, b) {
-          return new Date(a.date) - new Date(b.date);
-        }),
-      ]);
-  };
-
-  const handlerSortByNewestToOldestDate = (e) => {
-    if (e.target.checked)
-      setNotes([
-        ...notes.sort(function (a, b) {
-          return new Date(b.date) - new Date(a.date);
-        }),
-      ]);
-  };
-
-  const handlerSortByLowToHighPriority = (e) => {
-    if (e.target.checked)
-      setNotes([
-        ...notes.sort(function (a, b) {
-          return priorityLevels[a.priority] - priorityLevels[b.priority];
-        }),
-      ]);
-  };
-
-  const handlerSortByHighToLowPriority = (e) => {
-    if (e.target.checked)
-      setNotes([
-        ...notes.sort(function (a, b) {
-          return priorityLevels[b.priority] - priorityLevels[a.priority];
-        }),
-      ]);
-  };
+  const { encodedToken } = useAuth();
 
   // ****************************************************************************************************
 
@@ -63,63 +19,35 @@ function Home() {
       <Aside />
 
       <main className="main">
-        <section className="filters">
-          <div>
-            <h3>Sort by Date</h3>
-            <div>
-              <input
-                type="radio"
-                id="sortByOldestToNewestDate"
-                name="sortByDate"
-                onChange={(e) => handlerSortByOldestToNewestDate(e)}
-              />
-              <label htmlFor="sortByOldestToNewestDate">
-                {" "}
-                Oldest to Newest{" "}
-              </label>
-            </div>
-            <div>
-              <input
-                type="radio"
-                id="sortByNewestToOldestDate"
-                name="sortByDate"
-                onChange={(e) => handlerSortByNewestToOldestDate(e)}
-              />
-              <label htmlFor="sortByNewestToOldestDate">
-                {" "}
-                Newest to Oldest{" "}
-              </label>
-            </div>
+        <section className="hero-content">
+          <div className="hero-text">
+            <h3 className="h3">Meet your modern </h3>
+
+            <h2 className="h2">
+              <span className="color-blue">Note Taking App</span>
+            </h2>
+
+            <p className="text-grey text-center">
+              Manage your daily tasks and workflow in a modern way and boost
+              your efficiency without any efforts.
+            </p>
+
+            {!encodedToken && (
+              <Link to="/auth">
+                <button className="btn btn-primary btn-fixed pointer">
+                  Log in
+                </button>
+              </Link>
+            )}
           </div>
 
-          <div>
-            <h3>Sort by Priority</h3>
-            <div>
-              <input
-                type="radio"
-                id="sortByLowToHighPriority"
-                name="sortByPriority"
-                onChange={(e) => handlerSortByLowToHighPriority(e)}
-              />
-              <label htmlFor="sortByLowToHighPriority"> Low to High </label>
-            </div>
-            <div>
-              <input
-                type="radio"
-                id="sortByHighToLowPriority"
-                name="sortByPriority"
-                onChange={(e) => handlerSortByHighToLowPriority(e)}
-              />
-              <label htmlFor="sortByHighToLowPriority"> High to Low </label>
-            </div>
+          <div className="hero-image">
+            <img
+              className="image-responsive"
+              src={takingNotesImage.default}
+              alt=""
+            />
           </div>
-        </section>
-
-        <section className="notes">
-          <CardMain />
-          {notes.map((note) => (
-            <CardNote key={note._id} data={note} />
-          ))}
         </section>
       </main>
     </div>

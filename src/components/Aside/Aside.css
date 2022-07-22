@@ -1,16 +1,12 @@
 .aside {
   grid-area: aside;
   display: flex;
-  justify-content: unset;
-  align-items: unset;
   flex-direction: column;
-  padding: 2rem;
+  padding: 2.5rem;
 }
 
-a.active {
-  color: forestgreen;
-}
-
-.tabs {
-  gap: 2rem;
+@media screen and (max-width: 600px) {
+  .aside > ul {
+    text-align: center;
+  }
 }

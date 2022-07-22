@@ -36,7 +36,7 @@ const TrashProvider = ({ children }) => {
         setTrash(getTrashResponse.data.trash);
       }
     } catch (error) {
-      console.log(error);
+      console.error(error);
     }
   };
 
@@ -58,7 +58,7 @@ const TrashProvider = ({ children }) => {
         setTrash(addNoteFromNotesToTrashResponse.data.trash);
       }
     } catch (error) {
-      console.log(error);
+      console.error(error);
     }
   };
 
@@ -80,7 +80,7 @@ const TrashProvider = ({ children }) => {
         setNotes(restoreNoteFromTrashToNotesResponse.data.notes);
       }
     } catch (error) {
-      console.log(error);
+      console.error(error);
     }
   };
 
@@ -100,7 +100,7 @@ const TrashProvider = ({ children }) => {
         setTrash(deleteNoteFromTrashResponse.data.trash);
       }
     } catch (error) {
-      console.log(error);
+      console.error(error);
     }
   };
 

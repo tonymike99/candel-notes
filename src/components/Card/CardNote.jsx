@@ -110,119 +110,43 @@ function CardNote({ data }) {
   return (
     <div className="card" style={{ backgroundColor: editedNoteDetails.color }}>
       <small className="text-center">Created on {editedNoteDetails.date}</small>
-      <div className="card-header">
-        <input
-          className={isNoteInArchivesOrTrash(_id) ? "disabled" : ""}
-          type="text"
-          placeholder="Title of the note"
-          required
-          value={editedNoteDetails.title}
-          onChange={(e) =>
-            setEditedNoteDetails({
-              ...editedNoteDetails,
-              title: e.target.value,
-            })
-          }
-        />
-      </div>
-      <div className="card-body">
-        <textarea
-          className={isNoteInArchivesOrTrash(_id) ? "disabled" : ""}
-          name="note-description"
-          id="note-description"
-          cols="10"
-          rows="5"
-          placeholder="Description of the note"
-          required
-          value={editedNoteDetails.description}
-          onChange={(e) =>
-            setEditedNoteDetails({
-              ...editedNoteDetails,
-              description: e.target.value,
-            })
-          }
-        ></textarea>
-      </div>
-      {location.pathname !== "/labels" && (
-        <div className="card-footer">
-          {isNoteInArchives(_id) ? (
-            <span onClick={handleRestoreNoteFromArchivesToNotesOnClick}>
-              <label>
-                Restore
-                <span className="pointer">
-                  <i className="fa-solid fa-clock-rotate-left"></i>
-                </span>
-              </label>
-            </span>
-          ) : (
-            !isNoteInTrash(_id) && (
-              <span onClick={handleArchiveNoteButtonOnClick}>
-                <label>
-                  Archive
-                  <span className="pointer">
-                    <i className="fa-solid fa-box-archive"></i>
-                  </span>
-                </label>
-              </span>
-            )
-          )}
+      <input
+        className={
+          isNoteInArchivesOrTrash(_id) ? "new_input disabled" : "new_input"
+        }
+        type="text"
+        placeholder="Title of the note"
+        required
+        value={editedNoteDetails.title}
+        onChange={(e) =>
+          setEditedNoteDetails({
+            ...editedNoteDetails,
+            title: e.target.value,
+          })
+        }
+      />
 
-          {isNoteInTrash(_id) ? (
-            <span onClick={handleRestoreNoteFromTrashToNotesOnClick}>
-              <label>
-                Restore
-                <span className="pointer">
-                  <i className="fa-solid fa-clock-rotate-left"></i>
-                </span>
-              </label>
-            </span>
-          ) : (
-            !isNoteInArchives(_id) && (
-              <span onClick={handleTrashNoteButtonOnClick}>
-                <label>
-                  Trash
-                  <span className="pointer">
-                    <i className="fa-solid fa-trash-can"></i>
-                  </span>
-                </label>
-              </span>
-            )
-          )}
+      <textarea
+        className={
+          isNoteInArchivesOrTrash(_id)
+            ? "new_textarea disabled"
+            : "new_textarea"
+        }
+        name="note-description"
+        id="note-description"
+        cols="10"
+        rows="5"
+        placeholder="Description of the note"
+        required
+        value={editedNoteDetails.description}
+        onChange={(e) =>
+          setEditedNoteDetails({
+            ...editedNoteDetails,
+            description: e.target.value,
+          })
+        }
+      ></textarea>
 
-          {isNoteInArchives(_id) && (
-            <span onClick={handleDeleteNoteFromArchivesOnClick}>
-              <label>
-                Delete
-                <span className="pointer">
-                  <i className="fa-solid fa-delete-left"></i>
-                </span>
-              </label>
-            </span>
-          )}
-
-          {isNoteInTrash(_id) && (
-            <span onClick={handleDeleteNoteFromTrashOnClick}>
-              <label>
-                Delete
-                <span className="pointer">
-                  <i className="fa-solid fa-delete-left"></i>
-                </span>
-              </label>
-            </span>
-          )}
-
-          {isNoteInNotes(_id) && (
-            <span onClick={handleDeleteNoteButtonOnClick}>
-              <label>
-                Delete
-                <span className="pointer">
-                  <i className="fa-solid fa-delete-left"></i>
-                </span>
-              </label>
-            </span>
-          )}
-        </div>
-      )}
       {!isNoteInArchivesOrTrash(_id) && (
         <div className="card-footer">
           <div>
@@ -268,45 +192,126 @@ function CardNote({ data }) {
               <option value="High">High</option>
             </select>
           </div>
-          <div>
+          <div className="relative">
             <label htmlFor={`tags-${_id}`}>
               Tags: <i className="fa-solid fa-tag"></i>
               <span className="pointer" onClick={handleLabelsDisplay}>
-                <i className="fa-solid fa-caret-down"></i>
+                {labelsDisplay ? (
+                  <i className="fa-solid fa-caret-down"></i>
+                ) : (
+                  <i className="fa-solid fa-caret-right"></i>
+                )}
               </span>
             </label>
-            <div className="relative">
-              <fieldset
-                className={labelsDisplay ? "absolute" : "absolute display-none"}
-              >
-                {editedNoteDetails.tags.map((tag, index) => (
-                  <div key={tag._id}>
-                    <input
-                      type="checkbox"
-                      id={tag.id}
-                      name={tag.name}
-                      defaultChecked={tag?.checked}
-                      onChange={(e) =>
-                        setEditedNoteDetails({
-                          ...editedNoteDetails,
-                          tags: [
-                            ...editedNoteDetails.tags.slice(0, index),
-                            { ...tag, checked: e.target.checked },
-                            ...editedNoteDetails.tags.slice(index + 1),
-                          ],
-                        })
-                      }
-                    />
-                    <label htmlFor={tag.id}>{tag.name}</label>
-                  </div>
-                ))}
-              </fieldset>
-            </div>
+
+            <fieldset className={labelsDisplay ? "absolute" : "display-none"}>
+              {editedNoteDetails.tags.map((tag, index) => (
+                <div key={tag._id}>
+                  <input
+                    type="checkbox"
+                    id={tag.id}
+                    name={tag.name}
+                    defaultChecked={tag?.checked}
+                    onChange={(e) =>
+                      setEditedNoteDetails({
+                        ...editedNoteDetails,
+                        tags: [
+                          ...editedNoteDetails.tags.slice(0, index),
+                          { ...tag, checked: e.target.checked },
+                          ...editedNoteDetails.tags.slice(index + 1),
+                        ],
+                      })
+                    }
+                  />
+                  <label htmlFor={tag.id}>{tag.name}</label>
+                </div>
+              ))}
+            </fieldset>
           </div>
         </div>
       )}
-      <div>
-        {location.pathname !== "/labels" && (
+
+      {location.pathname !== "/labels" && (
+        <>
+          <div className="card-footer">
+            {isNoteInArchives(_id) ? (
+              <span onClick={handleRestoreNoteFromArchivesToNotesOnClick}>
+                <label>
+                  Restore
+                  <span className="pointer">
+                    <i className="fa-solid fa-clock-rotate-left"></i>
+                  </span>
+                </label>
+              </span>
+            ) : (
+              !isNoteInTrash(_id) && (
+                <span onClick={handleArchiveNoteButtonOnClick}>
+                  <label>
+                    Archive
+                    <span className="pointer">
+                      <i className="fa-solid fa-box-archive"></i>
+                    </span>
+                  </label>
+                </span>
+              )
+            )}
+
+            {isNoteInTrash(_id) ? (
+              <span onClick={handleRestoreNoteFromTrashToNotesOnClick}>
+                <label>
+                  Restore
+                  <span className="pointer">
+                    <i className="fa-solid fa-clock-rotate-left"></i>
+                  </span>
+                </label>
+              </span>
+            ) : (
+              !isNoteInArchives(_id) && (
+                <span onClick={handleTrashNoteButtonOnClick}>
+                  <label>
+                    Trash
+                    <span className="pointer">
+                      <i className="fa-solid fa-trash-can"></i>
+                    </span>
+                  </label>
+                </span>
+              )
+            )}
+
+            {isNoteInNotes(_id) && (
+              <span onClick={handleDeleteNoteButtonOnClick}>
+                <label>
+                  Delete
+                  <span className="pointer">
+                    <i className="fa-solid fa-delete-left"></i>
+                  </span>
+                </label>
+              </span>
+            )}
+
+            {isNoteInArchives(_id) && (
+              <span onClick={handleDeleteNoteFromArchivesOnClick}>
+                <label>
+                  Delete
+                  <span className="pointer">
+                    <i className="fa-solid fa-delete-left"></i>
+                  </span>
+                </label>
+              </span>
+            )}
+
+            {isNoteInTrash(_id) && (
+              <span onClick={handleDeleteNoteFromTrashOnClick}>
+                <label>
+                  Delete
+                  <span className="pointer">
+                    <i className="fa-solid fa-delete-left"></i>
+                  </span>
+                </label>
+              </span>
+            )}
+          </div>
+
           <button
             className={
               isNoteInArchivesOrTrash(_id)
@@ -318,8 +323,8 @@ function CardNote({ data }) {
             <i className="fa-solid fa-floppy-disk"></i>
             Save note
           </button>
-        )}
-      </div>
+        </>
+      )}
     </div>
   );
 }

@@ -1,4 +1,5 @@
 import { useDocumentTitle } from "../../hooks/custom/index";
+var errorImage = require("../../assets/images/404_error.svg");
 
 function PageNotFound() {
   // SET DOCUMENT TITLE
@@ -8,7 +9,13 @@ function PageNotFound() {
 
   return (
     <>
-      <div className="errorImage"></div>
+      <div className="error-image">
+        <img
+          className="image-responsive"
+          src={errorImage.default}
+          alt="404 error"
+        />
+      </div>
     </>
   );
 }
